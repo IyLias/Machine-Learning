@@ -37,7 +37,7 @@ def fillna(df):
 
 # delete not necessary things in df
 def drop_features(df):
-    df.drop(['PassengerID','Name','Ticket'],axis=1,inplace=True)
+    df.drop(['PassengerId','Name','Ticket'],axis=1,inplace=True)
     return df
 
 
@@ -62,7 +62,7 @@ def transform_features(df):
 
 
 # 5 fold set with KFold
-def exec_kfold(clf,folds=5,X_titanic_df,y_titanic_df):
+def exec_kfold(clf,X_titanic_df,y_titanic_df,folds=5):
     kfold = KFold(n_splits=folds)
     scores=[]
 
@@ -103,9 +103,9 @@ dt_clf = DecisionTreeClassifier(random_state=11)
 
 dt_clf.fit(X_train,y_train)
 dt_pred = dt_clf.predict(X_test)
-print('Accuracy of DecisionTree Model: {0:.4f}'.format(accuracy_score(y_test,dt_pred))
+print('Accuracy of DecisionTree Model: {0:.4f}'.format(accuracy_score(y_test,dt_pred)))
 
-exec_kfold(dt_clf,folds=5,X_titanic_df,y_titanic_df)
+exec_kfold(dt_clf,X_titanic_df,y_titanic_df,folds=5)
 
 
 # RandomForest Model
@@ -113,7 +113,7 @@ rf_clf = RandomForestClassifier(random_state=11)
 
 rf_clf.fit(X_train,y_train)
 rf_pred = rf_clf.predict(X_test)
-print('Accuracy of RandomForest Model: {0:.4f}'.format(accuracy_score(y_test,rf_pred))
+print('Accuracy of RandomForest Model: {0:.4f}'.format(accuracy_score(y_test,rf_pred)))
 
 
 
@@ -122,7 +122,7 @@ lr_clf = LogisticRegression()
 
 lr_clf.fit(X_train,y_train)
 lr_pred = lr_clf.predict(X_train)
-print('Accuracy of LogisticRegression Model: {0:.4f}'.format(accuracy_score(y_test,lr_pred))
+#print('Accuracy of LogisticRegression Model: {0:.4f}'.format(accuracy_score(y_test,lr_pred)))
 
 
 
